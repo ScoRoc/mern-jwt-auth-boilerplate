@@ -9,8 +9,8 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      token: '',
-      user: {}
+      token: null,
+      user: null
     }
     this.liftTokenToState = this.liftTokenToState.bind(this)
     this.logout = this.logout.bind(this)
@@ -26,7 +26,7 @@ class App extends Component {
   logout() {
     console.log('Logging out')
     localStorage.removeItem('mernToken')
-    this.setState({ token: '', user: {} })
+    this.setState({ token: '', user: null })
   }
 
   componentDidMount() {
@@ -34,8 +34,8 @@ class App extends Component {
     if (token === 'undefined' || token === 'null' || token === '' || token === undefined) {
       localStorage.removeItem('mernToken')
       this.setState({
-        token: '',
-        user: {}
+        token: null,
+        user: null
       })
     } else {
       axios.post('/auth/me/from/token', {
